@@ -22,7 +22,7 @@ public class ChristmasPhotoBoothController : MonoBehaviour {
         EventManager.OnUpdateScene -= EventManager_OnUpdateScene;
     }
 
-    void ResetWorld()
+    public void ResetWorld()
     {
         GlobalVars.SceneList item = (GlobalVars.SceneList)0;
         SetCurrentStep(item);
