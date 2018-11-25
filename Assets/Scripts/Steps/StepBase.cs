@@ -12,7 +12,6 @@ public class StepBase : MonoBehaviour {
     private void Awake()
     {
         _ChristmasPhotoBoothController = FindObjectOfType<ChristmasPhotoBoothController>();
-        Debug.Log("controller: " + _ChristmasPhotoBoothController);
     }
 
     public virtual void Hide()
@@ -25,9 +24,14 @@ public class StepBase : MonoBehaviour {
         this.gameObject.SetActive(true);
     }
 
-    public void SetScene()
+    public void GoToScene(GlobalVars.SceneList scene)
     {
-        EventManager.Instance.UpdateScene(NextScene);
-        //EventManager.Instance.SetScene((int)NextScene);
+        EventManager.Instance.UpdateScene(scene);
     }
+
+    //public void SetScene()
+    //{
+    //    EventManager.Instance.UpdateScene(NextScene);
+    //    //EventManager.Instance.SetScene((int)NextScene);
+    //}
 }

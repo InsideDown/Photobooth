@@ -22,10 +22,13 @@ public class CaptureImage : MonoBehaviour {
     [Tooltip("The camera to use to render from")]
     public Camera CameraToUse;
 
+    public List<Texture2D> PhotoTextures = new List<Texture2D>();
+
     private string _DocumentPath;
     //keep track of how many files are currently in our directory for naming
     private int _FileCount;
     private bool _IsCapturingScreenshot = false;
+    private string _LatestFileName = null;
 
     // private vars for screenshot
     private Rect Rect;
@@ -43,7 +46,13 @@ public class CaptureImage : MonoBehaviour {
 
     private void OnEnable()
     {
-        EventManager.OnCaptureScreenshot += EventManager_OnCaptureScreenshot;
+        EventManager.OnCaptureScreenshotStart += EventManager_OnCaptureScreenshotStart;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnCaptureScreenshotStart -= EventManager_OnCaptureScreenshotStart;
+
     }
 
 
@@ -71,6 +80,14 @@ public class CaptureImage : MonoBehaviour {
 
     private void Update()
     {
+        if (!string.IsNullOrEmpty(_LatestFileName))
+        {
+            EventManager.Instance.LogEvent("wrote: " + _LatestFileName);
+            _LatestFileName = null;
+            //as of right now, we're done capturing here
+            EventManager.Instance.CaptureScreenshotComplete();
+        }
+
         if(_IsCapturingScreenshot)
         {
             _IsCapturingScreenshot = false;
@@ -97,6 +114,13 @@ public class CaptureImage : MonoBehaviour {
         RenderTexture.active = RenderTextureToUse;
         ScreenShot.ReadPixels(Rect, 0, 0);
 
+        //create a new texture to add to our list
+        Texture2D screenshotCopy = new Texture2D(ScreenShot.width, ScreenShot.height);
+        Color[] colors = ScreenShot.GetPixels(0, 0, ScreenShot.width, ScreenShot.height);
+        screenshotCopy.SetPixels(colors);
+        screenshotCopy.Apply();
+        PhotoTextures.Add(screenshotCopy);
+
         // reset active camera texture and render texture
         CameraToUse.targetTexture = null;
         RenderTexture.active = null;
@@ -122,14 +146,26 @@ public class CaptureImage : MonoBehaviour {
         else // ppm
         {
             // create a file header for ppm formatted file
-            // create a file header for ppm formatted file
             string headerStr = string.Format("P6\n{0} {1}\n255\n", CaptureWidth, CaptureHeight);
             fileHeader = System.Text.Encoding.ASCII.GetBytes(headerStr);
             ScreenShot.wrapMode = TextureWrapMode.Clamp;
 
             fileData = ScreenShot.GetRawTextureData();
-
         }
+
+        // create new thread to save the image to file (only operation that can be done in background)
+        new System.Threading.Thread(() =>
+        {
+            // create file and write optional header with image bytes
+            var f = System.IO.File.Create(fileName);
+            if (fileHeader != null) f.Write(fileHeader, 0, fileHeader.Length);
+
+            f.Write(fileData, 0, fileData.Length);
+            f.Close();
+            _LatestFileName = fileName;
+
+            Debug.Log(string.Format("Wrote screenshot {0} of size {1}", fileName, fileData.Length));
+        }).Start();
 
     }
 
@@ -148,14 +184,20 @@ public class CaptureImage : MonoBehaviour {
     }
 
 
-    void SetScreenCapturing()
+    /// <summary>
+    /// Capture screens with a slight delay to allow other events time to happen
+    /// </summary>
+    /// <returns>The screen capturing.</returns>
+    IEnumerator SetScreenCapturing()
     {
+        yield return new WaitForSeconds(0.1f);
         _IsCapturingScreenshot = true;
     }
 
-    void EventManager_OnCaptureScreenshot()
+    void EventManager_OnCaptureScreenshotStart()
     {
-        SetScreenCapturing();
+        PhotoTextures.Clear();
+        StartCoroutine(SetScreenCapturing());
     }
 
 }

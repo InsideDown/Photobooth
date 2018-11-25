@@ -17,7 +17,8 @@ public class EventManager : Singleton<EventManager> {
     public static event SceneUpdateAction OnUpdateSceneComplete;
 
     public delegate void ScreenCaptureAction();
-    public static event ScreenCaptureAction OnCaptureScreenshot;
+    public static event ScreenCaptureAction OnCaptureScreenshotStart;
+    public static event ScreenCaptureAction OnCaptureScreenshotComplete;
 
     public void SetScene(int index)
     {
@@ -37,10 +38,16 @@ public class EventManager : Singleton<EventManager> {
             OnUpdateSceneComplete(sceneEnum);
     }
 
-    public void CaptureScreenshot()
+    public void CaptureScreenshotStart()
     {
-        if (OnCaptureScreenshot != null)
-            OnCaptureScreenshot();
+        if (OnCaptureScreenshotStart != null)
+            OnCaptureScreenshotStart();
+    }
+
+    public void CaptureScreenshotComplete()
+    {
+        if (OnCaptureScreenshotComplete != null)
+            OnCaptureScreenshotComplete();
     }
 
     public void LogEvent(string txtString)

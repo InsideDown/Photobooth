@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &75737792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,12 +374,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurScene: 1
-  NextScene: 0
+  NextScene: 2
   Instructions: {fileID: 2085119241}
+  BtnTakePhoto: {fileID: 2139136034}
   CountdownList:
   - {fileID: 1002079262}
   - {fileID: 449658029}
   - {fileID: 1592903256}
+  WaitLength: 1
 --- !u!4 &75737793
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +399,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &130963301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 130963302}
+  - component: {fileID: 130963303}
+  m_Layer: 0
+  m_Name: Step3ReviewPhotos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &130963302
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130963301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 657083864}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &130963303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 130963301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7556a0081bb48fb98f2faf7a6ed87d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurScene: 2
+  NextScene: 0
+  PhotoHolder: {fileID: 657083863}
+  PhotoReviewController: {fileID: 114287499851938842, guid: 70b1e8df7e0d5413f9d44d44f0e1346e,
+    type: 2}
 --- !u!1 &132081276
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +794,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 530781991}
+--- !u!1 &657083863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 657083864}
+  m_Layer: 0
+  m_Name: PhotoReviewHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &657083864
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657083863}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 130963302}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663383598
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +949,7 @@ MonoBehaviour:
   StepList:
   - {fileID: 800025395}
   - {fileID: 75737792}
+  - {fileID: 130963303}
 --- !u!4 &770299462
 Transform:
   m_ObjectHideFlags: 0
@@ -943,7 +1020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &800025395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,6 +1351,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1208415516}
+  - component: {fileID: 1208415517}
   m_Layer: 0
   m_Name: CaptureImageController
   m_TagString: Untagged
@@ -1292,8 +1370,25 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208415517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208415515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c7a7b601cef446195d75b74747607a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: superscreen_
+  CaptureWidth: 3840
+  CaptureHeight: 2160
+  FileFormat: 1
+  DirectoryName: christmas-screenshots
+  CameraToUse: {fileID: 1804958056}
 --- !u!1 &1412761786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1580,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1562062355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2055446181}
+        m_MethodName: OnResetClick
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1562062355
@@ -2259,8 +2365,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2055446180}
+  - component: {fileID: 2055446181}
   m_Layer: 0
-  m_Name: GlobalUI
+  m_Name: GlobalUIController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2279,8 +2386,22 @@ Transform:
   - {fileID: 2008868885}
   - {fileID: 1188137527}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2055446181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055446179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef47281c9faa2482cbfd231742ac22fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VisibleItems:
+  - Item: {fileID: 1562062352}
+    Visible: 01000000
 --- !u!1 &2085119241
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Step1BackgroundSelectionController : StepBase {
     public void BtnPressed(int index)
     {
         GlobalVars.Instance.BackgroundIndex = index;
-        base.SetScene();
+        base.GoToScene(NextScene);
     }
 
     public override void Hide()

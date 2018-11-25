@@ -15,5 +15,6 @@ public class GlobalVars : Singleton<GlobalVars>
 
     public SceneList CurScene;
     public int BackgroundIndex = 0;
+    public List<Texture2D> ScreenshotReviewList = new List<Texture2D>();
 
 }

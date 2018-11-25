@@ -21,6 +21,16 @@ public class Step2TakePhotoController : StepBase {
             throw new System.Exception("A CountdownList object must be defined in " + this.gameObject.name);
     }
 
+    void OnEnable()
+    {
+        EventManager.OnCaptureScreenshotComplete += EventManager_OnCaptureScreenshotComplete;    
+    }
+
+    void onDisable()
+    {
+        EventManager.OnCaptureScreenshotComplete -= EventManager_OnCaptureScreenshotComplete;  
+    }
+
     void Init()
     {
         _CurCountdownItem = 0;
@@ -76,12 +86,30 @@ public class Step2TakePhotoController : StepBase {
         {
             StartCoroutine(ShowCountdownNumber());
         }else{
-            ShowCountdownListItem();
+            TakePhoto();
         }
+    }
+
+    void TakePhoto()
+    {
+        //hide our list
+        ShowCountdownListItem();
+        EventManager.Instance.CaptureScreenshotStart();
+    }
+
+    void InitTakePhoto()
+    {
+        StartCountdown();
     }
 
     public void OnTakePhotoClick()
     {
-        StartCountdown();
+        InitTakePhoto();
     }
+
+    void EventManager_OnCaptureScreenshotComplete()
+    {
+        base.GoToScene(NextScene);
+    }
+
 }
