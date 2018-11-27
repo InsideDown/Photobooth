@@ -21,7 +21,7 @@ SpriteAtlas:
     platformSettings: []
     packingParameters:
       serializedVersion: 2
-      padding: 4
+      padding: 2
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 1
@@ -33,9 +33,17 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9f8efc5a4816a4b529dfc276b9019d74, type: 3}
+  - {fileID: 21300000, guid: 1fbd1ca8ec0a54dc3b9267facd79d641, type: 3}
   - {fileID: 21300000, guid: 0b5db2bc3a3e64d98b72dd184afb2368, type: 3}
+  - {fileID: 21300000, guid: 519cbb71b2fc3405eaf21ba986a91c0f, type: 3}
+  - {fileID: 21300000, guid: feaf54d5ab85f48809d2adbb729557af, type: 3}
+  - {fileID: 21300000, guid: b5b3664eedcba42a9865b3955c2049e2, type: 3}
   m_PackedSpriteNamesToIndex:
   - fpo-thumb1
+  - fpo-thumb3
   - fpo-thumb2
+  - fpo-thumb5
+  - fpo-thumb4
+  - fpo-thumb6
   m_Tag: BackgroundSelection
   m_IsVariant: 0
