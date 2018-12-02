@@ -448,6 +448,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.85
       objectReference: {fileID: 0}
+    - target: {fileID: 1537265764839118, guid: 70b1e8df7e0d5413f9d44d44f0e1346e, type: 2}
+      propertyPath: m_Name
+      value: PhotoBackground
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114287499851938842, guid: 70b1e8df7e0d5413f9d44d44f0e1346e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 70b1e8df7e0d5413f9d44d44f0e1346e, type: 2}
@@ -597,6 +601,9 @@ MonoBehaviour:
   CurScene: 2
   NextScene: 0
   PrevScene: 1
+  BtnSavePhoto: {fileID: 697851752}
+  BtnRetakePhoto: {fileID: 628280118}
+  TxtPhotoSaved: {fileID: 0}
   PhotoHolder: {fileID: 657083863}
   PhotoReviewController: {fileID: 114287499851938842, guid: 70b1e8df7e0d5413f9d44d44f0e1346e,
     type: 2}
@@ -1080,6 +1087,7 @@ GameObject:
   - component: {fileID: 628280122}
   - component: {fileID: 628280121}
   - component: {fileID: 628280120}
+  - component: {fileID: 628280123}
   m_Layer: 0
   m_Name: BtnRetake
   m_TagString: Untagged
@@ -1191,6 +1199,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 628280118}
+--- !u!225 &628280123
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 628280118}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &657083863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1310,7 @@ GameObject:
   - component: {fileID: 697851756}
   - component: {fileID: 697851755}
   - component: {fileID: 697851754}
+  - component: {fileID: 697851757}
   m_Layer: 0
   m_Name: BtnSave
   m_TagString: Untagged
@@ -1402,6 +1422,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697851752}
+--- !u!225 &697851757
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 697851752}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &758312673
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Step3ReviewPhotoController : StepBase {
 
+
+    public GameObject BtnSavePhoto;
+    public GameObject BtnRetakePhoto;
+    public GameObject TxtPhotoSaved;
     public GameObject PhotoHolder;
     public PhotoReview PhotoReviewController;
 
     private CaptureImage _CaptureImageController;
+    private CanvasGroup _BtnSaveCanvasGroup;
+    private CanvasGroup _BtnRetakeCanvasGroup;
 
     private void Awake()
     {
         _CaptureImageController = FindObjectOfType<CaptureImage>();
+        _BtnSaveCanvasGroup = BtnSavePhoto.GetComponent<CanvasGroup>();
+        _BtnRetakeCanvasGroup = BtnRetakePhoto.GetComponent<CanvasGroup>();
     }
 
     private void OnEnable()
@@ -52,6 +61,14 @@ public class Step3ReviewPhotoController : StepBase {
         EventManager.Instance.SaveScreenshotStart();
     }
 
+    void AnimIn()
+    {
+        float tweenSpeed = 0.4f;
+        _BtnSaveCanvasGroup.DOFade(1, tweenSpeed);
+        _BtnRetakeCanvasGroup.DOFade(1, tweenSpeed).SetDelay(0.4f);
+
+    }
+
     public void OnSavePhoto()
     {
         Debug.Log("saving photo");
@@ -67,12 +84,15 @@ public class Step3ReviewPhotoController : StepBase {
 
     public override void Hide()
     {
+        _BtnSaveCanvasGroup.alpha = 0;
+        _BtnSaveCanvasGroup.alpha = 0;
         base.Hide();
     }
 
     public override void Show()
     {
         base.Show();
+        AnimIn();
         ReviewPhotos();
     }
 
