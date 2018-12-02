@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Step2TakePhotoController : StepBase {
@@ -12,12 +13,26 @@ public class Step2TakePhotoController : StepBase {
     public Material BackgroundMaterial;
 
     private int _CurCountdownItem = 0;
+    private Vector3 _InstructionPos;
+    private Vector3 _BtnStartPos;
+    private CanvasGroup _InstructionCanvasGroup;
+    private CanvasGroup _BtnStartCanvasGroup;
+    private float _DelayBeforeInstructions = 1.0f;
 
     private void Awake()
     {
         Utils.Instance.CheckRequired(Instructions, "ScrollContainer");
         Utils.Instance.CheckRequired(CountdownList);
         Utils.Instance.CheckRequired(BackgroundMaterial);
+
+        _InstructionPos = Instructions.transform.localPosition;
+        _BtnStartPos = BtnTakePhoto.transform.localPosition;
+
+        _InstructionCanvasGroup = Instructions.GetComponent<CanvasGroup>();
+        _BtnStartCanvasGroup = BtnTakePhoto.GetComponent<CanvasGroup>();
+
+        Instructions.SetActive(false);
+        BtnTakePhoto.SetActive(false);
     }
 
     void OnEnable()
@@ -35,8 +50,14 @@ public class Step2TakePhotoController : StepBase {
         //replace our background 
         BackgroundMaterial.mainTexture = GlobalVars.Instance.BackgroundTexture;
         _CurCountdownItem = 0;
-        ShowInstructions();
         ShowCountdownListItem();
+        StartCoroutine(WaitShowInstructions());
+    }
+
+    IEnumerator WaitShowInstructions()
+    {
+        yield return new WaitForSeconds(_DelayBeforeInstructions);
+        ShowInstructions();
     }
 
     public override void Hide()
@@ -46,14 +67,28 @@ public class Step2TakePhotoController : StepBase {
 
     public override void Show()
     {
-        Init();
         base.Show();
+        Init();
     }
 
     void ShowInstructions()
     {
+        float tweenSpeed = 0.5f;
+        float delay = 0.3f;
+        float distance = 50.0f;
+    
+        _InstructionCanvasGroup.alpha = 0;
+        _BtnStartCanvasGroup.alpha = 0;
+        Instructions.transform.localPosition = new Vector3(_InstructionPos.x, _InstructionPos.y - distance, _InstructionPos.z);
+        BtnTakePhoto.transform.localPosition = new Vector3(_BtnStartPos.x, _BtnStartPos.y - distance, _BtnStartPos.z);
         Instructions.SetActive(true);
         BtnTakePhoto.SetActive(true);
+
+        _InstructionCanvasGroup.DOFade(1, tweenSpeed);
+        Instructions.transform.DOLocalMoveY(_InstructionPos.y, tweenSpeed).SetEase(Ease.OutQuad);
+
+        _BtnStartCanvasGroup.DOFade(1, tweenSpeed).SetDelay(delay);
+        BtnTakePhoto.transform.DOLocalMoveY(_BtnStartPos.y, tweenSpeed).SetDelay(delay).SetEase(Ease.OutQuad);
     }
 
     void HideInstructions()

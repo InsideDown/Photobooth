@@ -29,12 +29,20 @@ public class Step3ReviewPhotoController : StepBase {
     /// </summary>
     void ReviewPhotos()
     {
-        
+        ClearOldPhotos();
         for (int i = 0; i < _CaptureImageController.PhotoTextures.Count;i++)
         {
             Texture2D textureToReview = _CaptureImageController.PhotoTextures[i];
             PhotoReview photoReview = Instantiate(PhotoReviewController, PhotoHolder.transform, false) as PhotoReview;
             photoReview.SetImage(textureToReview);
+        }
+    }
+
+    void ClearOldPhotos()
+    {
+        foreach (Transform child in PhotoHolder.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 

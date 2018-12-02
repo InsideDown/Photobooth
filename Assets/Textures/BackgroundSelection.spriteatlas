@@ -38,6 +38,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 519cbb71b2fc3405eaf21ba986a91c0f, type: 3}
   - {fileID: 21300000, guid: feaf54d5ab85f48809d2adbb729557af, type: 3}
   - {fileID: 21300000, guid: b5b3664eedcba42a9865b3955c2049e2, type: 3}
+  - {fileID: 21300000, guid: e4dd2424d91244166ba4d0138c782082, type: 3}
+  - {fileID: 21300000, guid: 49567597524fd442da940a6348438251, type: 3}
   m_PackedSpriteNamesToIndex:
   - fpo-thumb1
   - fpo-thumb3
@@ -45,5 +47,7 @@ SpriteAtlas:
   - fpo-thumb5
   - fpo-thumb4
   - fpo-thumb6
+  - btn-red-back
+  - btn-green-back
   m_Tag: BackgroundSelection
   m_IsVariant: 0

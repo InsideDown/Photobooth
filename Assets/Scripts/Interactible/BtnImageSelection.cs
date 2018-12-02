@@ -30,7 +30,7 @@ public class BtnImageSelection : MonoBehaviour {
     {
         ImageContainer.sprite = image;
         _Texture = texture;
-        float ranDelay = Random.Range(0f, 1.0f);
+        float ranDelay = Random.Range(0f, 0.6f);
         _CanvasGroup.DOFade(1, 0.5f).SetDelay(ranDelay);
 
         ButtonContainer.onClick.AddListener(() =>
