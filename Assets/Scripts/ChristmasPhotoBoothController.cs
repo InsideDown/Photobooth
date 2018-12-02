@@ -7,7 +7,7 @@ public class ChristmasPhotoBoothController : MonoBehaviour {
     public List<StepBase> StepList;
 
 	
-    void Awake()
+    void Start()
     {
         ResetWorld();
     }

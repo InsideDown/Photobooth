@@ -19,6 +19,11 @@ public class EventManager : Singleton<EventManager> {
     public delegate void ScreenCaptureAction();
     public static event ScreenCaptureAction OnCaptureScreenshotStart;
     public static event ScreenCaptureAction OnCaptureScreenshotComplete;
+    public static event ScreenCaptureAction OnSaveScreenshotStart;
+    public static event ScreenCaptureAction OnSaveScreenshotComplete;
+
+    public delegate void ScreenSelectedAction();
+    public static event ScreenSelectedAction OnScreenSelected;
 
     public void SetScene(int index)
     {
@@ -50,9 +55,27 @@ public class EventManager : Singleton<EventManager> {
             OnCaptureScreenshotComplete();
     }
 
+    public void SaveScreenshotStart()
+    {
+        if (OnSaveScreenshotStart != null)
+            OnSaveScreenshotStart();
+    }
+
+    public void SaveScreenshotComplete()
+    {
+        if (OnSaveScreenshotComplete != null)
+            OnSaveScreenshotComplete();
+    }
+
     public void LogEvent(string txtString)
     {
         if (OnLogEvent != null)
             OnLogEvent(txtString);
+    }
+
+    public void ScreenSelected()
+    {
+        if (OnScreenSelected != null)
+            OnScreenSelected();
     }
 }

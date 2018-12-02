@@ -1,32 +1,48 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectionController : MonoBehaviour {
 
     public GameObject ScrollContainer;
 	public BtnImageSelection BtnPrefab;
+    public ScrollRect ScrollRect;
 
-    public List<Sprite> ImageList;
+    [Serializable]
+    public struct ImagesList
+    {
+        public Sprite ImageSprite;
+        public Texture LargeTexture;
+    }
+
+    public List<ImagesList> ImageSelectionList;
 
 
     private void Awake()
     {
         Utils.Instance.CheckRequired(ScrollContainer, "ScrollContainer");
         Utils.Instance.CheckRequired(BtnPrefab, "BtnPrefab");
-        Utils.Instance.CheckRequired(ImageList, "ImageList");
+        Utils.Instance.CheckRequired(ImageSelectionList, "ImageSelectionList");
 
+    }
+
+    public void Init()
+    {
+        ScrollRect.horizontalNormalizedPosition = 0.5f;
         InitList();
     }
 
     private void InitList()
     {
         ClearList();
-        for (int i = 0; i < ImageList.Count; i++)
+        for (int i = 0; i < ImageSelectionList.Count; i++)
         {
             BtnImageSelection btnImage = Instantiate(BtnPrefab, ScrollContainer.transform, false) as BtnImageSelection;
-            Sprite curSprite = ImageList[i];
-            btnImage.SetButton(curSprite);
+            Sprite curSprite = ImageSelectionList[i].ImageSprite;
+            Texture curTexture = ImageSelectionList[i].LargeTexture;
+            btnImage.SetButton(curSprite, curTexture);
         }
     }
 
@@ -37,14 +53,4 @@ public class SelectionController : MonoBehaviour {
             Destroy(child.gameObject);
         }
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

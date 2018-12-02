@@ -10,11 +10,13 @@ public class GlobalVars : Singleton<GlobalVars>
     public enum SceneList {
         Step1,
         Step2,
-        Step3
+        Step3,
+        Step4
     }
 
     public SceneList CurScene;
     public int BackgroundIndex = 0;
-    public List<Texture2D> ScreenshotReviewList = new List<Texture2D>();
+    //hold a reference to the background texture we should be using
+    public Texture BackgroundTexture;
 
 }

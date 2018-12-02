@@ -28,6 +28,7 @@ public class CaptureImage : MonoBehaviour {
     //keep track of how many files are currently in our directory for naming
     private int _FileCount;
     private bool _IsCapturingScreenshot = false;
+    private bool _IsSavingScreenshot = false;
     private string _LatestFileName = null;
 
     // private vars for screenshot
@@ -47,6 +48,7 @@ public class CaptureImage : MonoBehaviour {
     private void OnEnable()
     {
         EventManager.OnCaptureScreenshotStart += EventManager_OnCaptureScreenshotStart;
+        EventManager.OnSaveScreenshotStart += EventManager_OnSaveScreenshotStart;
     }
 
     private void OnDisable()
@@ -62,8 +64,14 @@ public class CaptureImage : MonoBehaviour {
     void CreateDirectory()
     {
         _DocumentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-        //TODO: need to check on PC
-        _DocumentPath += "/Documents/" + DirectoryName;
+        //TODO: need to check on PC - this doubles documents
+        if(Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            _DocumentPath += "/" + DirectoryName;
+        }else{
+            //we're probably a mac in player or editor
+            _DocumentPath += "/Documents/" + DirectoryName;
+        }
         _DocumentPath = Path.GetFullPath(_DocumentPath);
         //create directory if it does not yet exist (nothing if exists)
         System.IO.Directory.CreateDirectory(_DocumentPath);
@@ -71,6 +79,10 @@ public class CaptureImage : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Get the number of files in our directory
+    /// </summary>
+    /// <returns>The file count.</returns>
     int GetFileCount()
     {
         string mask = string.Format("{0}{1}x{2}*.{3}", FileName, CaptureWidth, CaptureHeight, FileFormat.ToString().ToLower());
@@ -85,15 +97,16 @@ public class CaptureImage : MonoBehaviour {
             EventManager.Instance.LogEvent("wrote: " + _LatestFileName);
             _LatestFileName = null;
             //as of right now, we're done capturing here
-            EventManager.Instance.CaptureScreenshotComplete();
+            EventManager.Instance.SaveScreenshotComplete();
         }
 
-        if(_IsCapturingScreenshot)
+        if(_IsSavingScreenshot)
         {
-            _IsCapturingScreenshot = false;
-            CaptureScreenshot();
+            _IsSavingScreenshot = false;
+            SaveScreenshot();
         }
     }
+
 
     void CaptureScreenshot()
     {
@@ -124,7 +137,12 @@ public class CaptureImage : MonoBehaviour {
         // reset active camera texture and render texture
         CameraToUse.targetTexture = null;
         RenderTexture.active = null;
+        EventManager.Instance.CaptureScreenshotComplete();
+    }
 
+
+    void SaveScreenshot()
+    {
         //get a unique filename to store 
         string fileName = GetUniqueFilename();
 
@@ -166,8 +184,8 @@ public class CaptureImage : MonoBehaviour {
 
             Debug.Log(string.Format("Wrote screenshot {0} of size {1}", fileName, fileData.Length));
         }).Start();
-
     }
+
 
     string GetUniqueFilename()
     {
@@ -191,13 +209,25 @@ public class CaptureImage : MonoBehaviour {
     IEnumerator SetScreenCapturing()
     {
         yield return new WaitForSeconds(0.1f);
-        _IsCapturingScreenshot = true;
+        CaptureScreenshot();
+        //_IsCapturingScreenshot = true;
+    }
+
+    IEnumerator SetSaveScreenshot()
+    {
+        yield return new WaitForEndOfFrame();
+        _IsSavingScreenshot = true;
     }
 
     void EventManager_OnCaptureScreenshotStart()
     {
         PhotoTextures.Clear();
         StartCoroutine(SetScreenCapturing());
+    }
+
+    void EventManager_OnSaveScreenshotStart()
+    {
+        StartCoroutine(SetSaveScreenshot());
     }
 
 }

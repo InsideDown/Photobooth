@@ -9,16 +9,15 @@ public class Step2TakePhotoController : StepBase {
     public GameObject BtnTakePhoto;
     public List<GameObject> CountdownList;
     public float WaitLength = 1.0f;
+    public Material BackgroundMaterial;
 
     private int _CurCountdownItem = 0;
 
     private void Awake()
     {
-        if (Instructions == null)
-            throw new System.Exception("An Instructions object must be defined in " + this.gameObject.name);
-
-        if (CountdownList == null || CountdownList.Count == 0)
-            throw new System.Exception("A CountdownList object must be defined in " + this.gameObject.name);
+        Utils.Instance.CheckRequired(Instructions, "ScrollContainer");
+        Utils.Instance.CheckRequired(CountdownList);
+        Utils.Instance.CheckRequired(BackgroundMaterial);
     }
 
     void OnEnable()
@@ -33,6 +32,8 @@ public class Step2TakePhotoController : StepBase {
 
     void Init()
     {
+        //replace our background 
+        BackgroundMaterial.mainTexture = GlobalVars.Instance.BackgroundTexture;
         _CurCountdownItem = 0;
         ShowInstructions();
         ShowCountdownListItem();

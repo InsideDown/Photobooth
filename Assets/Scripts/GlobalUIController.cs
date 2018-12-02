@@ -40,6 +40,10 @@ public class GlobalUIController : MonoBehaviour {
             for (int j = 0; j < VisibleItems[i].Visible.Count;j++)
             {
                 GlobalVars.SceneList curEnum = VisibleItems[i].Visible[j];
+
+                Debug.Log(curEnum);
+                Debug.Log(sceneEnum);
+                Debug.Log("---");
                 if(curEnum == sceneEnum)
                 {
                     curObject.SetActive(true);

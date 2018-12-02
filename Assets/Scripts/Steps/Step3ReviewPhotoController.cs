@@ -14,6 +14,16 @@ public class Step3ReviewPhotoController : StepBase {
         _CaptureImageController = FindObjectOfType<CaptureImage>();
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnSaveScreenshotComplete += EventManager_OnSaveScreenshotComplete;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnSaveScreenshotComplete -= EventManager_OnSaveScreenshotComplete;
+    }
+
     /// <summary>
     /// Loop through our photo array to review photos to decide if we want to keep them
     /// </summary>
@@ -28,6 +38,25 @@ public class Step3ReviewPhotoController : StepBase {
         }
     }
 
+    void SavePhoto()
+    {
+        //TODO: Messaging about screenshot being saved should display here
+        EventManager.Instance.SaveScreenshotStart();
+    }
+
+    public void OnSavePhoto()
+    {
+        Debug.Log("saving photo");
+        SavePhoto();
+    }
+
+    public void OnRetakePhoto()
+    {
+        Debug.Log("retaking photo");
+
+        base.GoToScene(PrevScene);
+    }
+
     public override void Hide()
     {
         base.Hide();
@@ -38,4 +67,10 @@ public class Step3ReviewPhotoController : StepBase {
         base.Show();
         ReviewPhotos();
     }
+
+    void EventManager_OnSaveScreenshotComplete()
+    {
+        Debug.Log("screenshot is done saving");
+    }
+
 }

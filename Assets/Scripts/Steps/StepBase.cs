@@ -6,6 +6,7 @@ public class StepBase : MonoBehaviour {
 
     public GlobalVars.SceneList CurScene;
     public GlobalVars.SceneList NextScene;
+    public GlobalVars.SceneList PrevScene;
 
     private ChristmasPhotoBoothController _ChristmasPhotoBoothController;
 
