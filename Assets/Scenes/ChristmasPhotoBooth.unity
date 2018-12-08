@@ -173,7 +173,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7887999
 GameObject:
@@ -339,7 +339,7 @@ RectTransform:
   m_Children:
   - {fileID: 1471619298}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -384,6 +384,7 @@ MonoBehaviour:
   - {fileID: 1592903256}
   WaitLength: 1
   BackgroundMaterial: {fileID: 2100000, guid: 2583a837d35614620b972a440b4f20c6, type: 2}
+  LiveCamStream: {fileID: 445587413}
 --- !u!4 &75737793
 Transform:
   m_ObjectHideFlags: 0
@@ -399,7 +400,7 @@ Transform:
   - {fileID: 132081277}
   - {fileID: 2124127585}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &96719948
 Prefab:
@@ -585,7 +586,7 @@ Transform:
   - {fileID: 657083864}
   - {fileID: 329890719}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &130963303
 MonoBehaviour:
@@ -607,6 +608,7 @@ MonoBehaviour:
   PhotoHolder: {fileID: 657083863}
   PhotoReviewController: {fileID: 114287499851938842, guid: 70b1e8df7e0d5413f9d44d44f0e1346e,
     type: 2}
+  TxtInfo: {fileID: 790561784}
 --- !u!1 &132081276
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +785,7 @@ RectTransform:
   m_Children:
   - {fileID: 697851753}
   - {fileID: 628280119}
+  - {fileID: 790561786}
   m_Father: {fileID: 130963302}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -883,7 +886,7 @@ MonoBehaviour:
   _requestedHeight: 480
   _fpsMode: 0
   _requestedFPS: 30
-  _playOnAwake: 1
+  _playOnAwake: 0
 --- !u!4 &445587414
 Transform:
   m_ObjectHideFlags: 0
@@ -1555,6 +1558,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webCamPlayer: {fileID: 1412761787}
   mskController: {fileID: 663383601}
+--- !u!1 &790561783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 790561786}
+  - component: {fileID: 790561785}
+  - component: {fileID: 790561784}
+  m_Layer: 0
+  m_Name: TxtInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &790561784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790561783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 4
+    m_MaxSize: 40
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &790561785
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790561783}
+--- !u!224 &790561786
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 790561783}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 329890719}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &800025394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,7 +1675,7 @@ Transform:
   m_Children:
   - {fileID: 1648420174}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909387236
 GameObject:
@@ -1922,7 +1999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1208415517
 MonoBehaviour:
@@ -1935,9 +2012,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c7a7b601cef446195d75b74747607a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FileName: superscreen_
-  CaptureWidth: 3840
-  CaptureHeight: 2160
+  FileName: christmas-screenshots_
+  CaptureWidth: 1920
+  CaptureHeight: 1080
   FileFormat: 1
   DirectoryName: christmas-screenshots
   CameraToUse: {fileID: 1804958056}
@@ -2473,16 +2550,24 @@ MonoBehaviour:
     type: 2}
   ScrollRect: {fileID: 1991380129}
   ImageSelectionList:
-  - ImageSprite: {fileID: 21300000, guid: 9f8efc5a4816a4b529dfc276b9019d74, type: 3}
-    LargeTexture: {fileID: 2800000, guid: dcada210bf2ff4032a774190976f8178, type: 3}
-  - ImageSprite: {fileID: 21300000, guid: 0b5db2bc3a3e64d98b72dd184afb2368, type: 3}
-    LargeTexture: {fileID: 2800000, guid: 37f5321b1810041308b99c07958fb977, type: 3}
-  - ImageSprite: {fileID: 21300000, guid: 1fbd1ca8ec0a54dc3b9267facd79d641, type: 3}
-    LargeTexture: {fileID: 2800000, guid: 041b53f85a4584c83844f17b577ad40a, type: 3}
-  - ImageSprite: {fileID: 21300000, guid: feaf54d5ab85f48809d2adbb729557af, type: 3}
-    LargeTexture: {fileID: 2800000, guid: 436c7d16d0b6b40dd9ac7dd3c7d35392, type: 3}
-  - ImageSprite: {fileID: 21300000, guid: 519cbb71b2fc3405eaf21ba986a91c0f, type: 3}
-    LargeTexture: {fileID: 2800000, guid: 4e63d1cbca42e4d9a94a85b84e16cd3c, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: b44e03b019f684fc2bed0c7c14314333, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 63d495d0ec62549b5b1173149d793f8c, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: 39e0b29d4ed1044b3b6d6e258b3d5e51, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 70d19bcc5aa15428daf31fc5a49110fa, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: dc66cb9d2d1bc424cab8e43f3be0932c, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 247a1827df006420ab6f3617a21a7e2f, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: a507bcd4f3c4b4961ae4e952790e8dc9, type: 3}
+    LargeTexture: {fileID: 2800000, guid: f259d066e204d4c33986df83d2b634a8, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: a70f6af1788f44c918d5d6847d4537e0, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 6704742b4a98d4eae8cd56b340b91be3, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: 4aae46a5804624ad5901d339cf7469e2, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 164f55e2982a848df8eb4ea6bab74538, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: 1713446ff468e4633a03508dd36c9d42, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 3a13ef411ae394fbabe8ff1020c50874, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: 92faadf9a38d14085a0de93a7256fb65, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 10e2d92bd72a243dc87321a20e03188e, type: 3}
+  - ImageSprite: {fileID: 21300000, guid: dab2626f19f684bd4ab417ec4f1232d6, type: 3}
+    LargeTexture: {fileID: 2800000, guid: 70d89675849f0441ebd9f1fed4e09ef9, type: 3}
   - ImageSprite: {fileID: 21300000, guid: b5b3664eedcba42a9865b3955c2049e2, type: 3}
     LargeTexture: {fileID: 2800000, guid: 982a336f42dd1494cbfe60e6f96462d5, type: 3}
 --- !u!1 &1706476321
@@ -2789,7 +2874,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1916741892
 GameObject:
@@ -3174,7 +3259,7 @@ Transform:
   - {fileID: 2008868885}
   - {fileID: 1188137527}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2055446181
 MonoBehaviour:
@@ -3350,8 +3435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraToUse: {fileID: 1804958056}
-  captureWidth: 3840
-  captureHeight: 2160
+  captureWidth: 1920
+  captureHeight: 1080
   hideGameObject: {fileID: 0}
   optimizeForManyScreenshots: 1
   format: 1

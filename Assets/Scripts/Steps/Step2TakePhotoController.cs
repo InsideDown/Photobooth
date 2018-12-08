@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Nexweron.WebCamPlayer;
 using UnityEngine;
 
 public class Step2TakePhotoController : StepBase {
@@ -11,6 +12,7 @@ public class Step2TakePhotoController : StepBase {
     public List<GameObject> CountdownList;
     public float WaitLength = 1.0f;
     public Material BackgroundMaterial;
+    public WebCamStream LiveCamStream;
 
     private int _CurCountdownItem = 0;
     private Vector3 _InstructionPos;
@@ -40,18 +42,20 @@ public class Step2TakePhotoController : StepBase {
         EventManager.OnCaptureScreenshotComplete += EventManager_OnCaptureScreenshotComplete;    
     }
 
-    void onDisable()
+    void OnDisable()
     {
         EventManager.OnCaptureScreenshotComplete -= EventManager_OnCaptureScreenshotComplete;  
     }
 
     void Init()
     {
+        LiveCamStream.Play(true);
         //replace our background 
         BackgroundMaterial.mainTexture = GlobalVars.Instance.BackgroundTexture;
         _CurCountdownItem = 0;
         ShowCountdownListItem();
         StartCoroutine(WaitShowInstructions());
+
     }
 
     IEnumerator WaitShowInstructions()
@@ -62,6 +66,7 @@ public class Step2TakePhotoController : StepBase {
 
     public override void Hide()
     {
+        LiveCamStream.Stop();
         base.Hide();
     }
 

@@ -32,21 +32,39 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 39e0b29d4ed1044b3b6d6e258b3d5e51, type: 3}
   - {fileID: 21300000, guid: 9f8efc5a4816a4b529dfc276b9019d74, type: 3}
+  - {fileID: 21300000, guid: dab2626f19f684bd4ab417ec4f1232d6, type: 3}
   - {fileID: 21300000, guid: 1fbd1ca8ec0a54dc3b9267facd79d641, type: 3}
   - {fileID: 21300000, guid: 0b5db2bc3a3e64d98b72dd184afb2368, type: 3}
   - {fileID: 21300000, guid: 519cbb71b2fc3405eaf21ba986a91c0f, type: 3}
   - {fileID: 21300000, guid: feaf54d5ab85f48809d2adbb729557af, type: 3}
   - {fileID: 21300000, guid: b5b3664eedcba42a9865b3955c2049e2, type: 3}
+  - {fileID: 21300000, guid: 4aae46a5804624ad5901d339cf7469e2, type: 3}
+  - {fileID: 21300000, guid: a507bcd4f3c4b4961ae4e952790e8dc9, type: 3}
+  - {fileID: 21300000, guid: 1713446ff468e4633a03508dd36c9d42, type: 3}
+  - {fileID: 21300000, guid: b44e03b019f684fc2bed0c7c14314333, type: 3}
+  - {fileID: 21300000, guid: 92faadf9a38d14085a0de93a7256fb65, type: 3}
+  - {fileID: 21300000, guid: dc66cb9d2d1bc424cab8e43f3be0932c, type: 3}
+  - {fileID: 21300000, guid: a70f6af1788f44c918d5d6847d4537e0, type: 3}
   - {fileID: 21300000, guid: e4dd2424d91244166ba4d0138c782082, type: 3}
   - {fileID: 21300000, guid: 49567597524fd442da940a6348438251, type: 3}
   m_PackedSpriteNamesToIndex:
+  - france-sm
   - fpo-thumb1
+  - dolphin-sm
   - fpo-thumb3
   - fpo-thumb2
   - fpo-thumb5
   - fpo-thumb4
   - fpo-thumb6
+  - snow-sm
+  - moon-sm
+  - timessquare-sm
+  - beach-sm
+  - trees-sm
+  - gs-sm
+  - random-sm
   - btn-red-back
   - btn-green-back
   m_Tag: BackgroundSelection
